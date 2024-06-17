@@ -22,7 +22,7 @@ public class SlotRow : MonoBehaviour
     }
 
     private IEnumerator Spin(){
-        rowStopped = true;
+        rowStopped = false;
         timeInterval = 0.025f;
         for (int i = 0; i < 30; i++){
             if (transform.position.y >= 11.35f){
@@ -69,25 +69,28 @@ public class SlotRow : MonoBehaviour
             yield return new WaitForSeconds(timeInterval); ;
         }
 
-        if (transform.position.y == -6.5f || transform.position.y == -11.35f){
+        if (transform.position.y == -6.5f || transform.position.y == 11.35f){
             stoppedSlot = "YellowDuck";
         }
-        else if (transform.position.y == -3.95f){
+        else if (transform.position.y >= -4f && transform.position.y < -2f)
+        {
             stoppedSlot = "GreyDuck";
         }
-        else if (transform.position.y == -1.4f){
+        else if (transform.position.y >= -1.5f && transform.position.y < -1.3f)
+        {
             stoppedSlot = "GreenDuck";
         }
-        else if (transform.position.y == 1.15f){
+        else if (transform.position.y >= 1f && transform.position.y < 2)
+        {
             stoppedSlot = "YoungYellowDuck";
         }
-        else if (transform.position.y == 3.7f){
+        else if (transform.position.y >= 3.6f && transform.position.y < 5){
             stoppedSlot = "YoungGreyDuck";
         }
-        else if (transform.position.y == 6.25f){
+        else if (transform.position.y >= 6.20f && transform.position.y < 7f){
             stoppedSlot = "YoungGreenDuck";
         }
-        else if (transform.position.y == 8.79f){
+        else if (transform.position.y >= 8.6f && transform.position.y < 9f){
             stoppedSlot = "Goose";
         }
 

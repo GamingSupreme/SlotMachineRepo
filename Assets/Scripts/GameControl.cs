@@ -15,9 +15,6 @@ public class GameControl : MonoBehaviour
     private SlotRow[] slotRows;
 
     [SerializeField]
-    private Transform spinButton;
-
-    [SerializeField]
     private TextMeshProUGUI multiplierText;
 
     private float multiplierVal;
