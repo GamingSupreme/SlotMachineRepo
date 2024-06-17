@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour
     public int currencyValue = 100;
     public int bet = 0;
     public bool stringValued = false;
+    private bool firstloop = true;
 
     [SerializeField]
     private SlotRow[] slotRows;
@@ -47,9 +48,12 @@ public class GameControl : MonoBehaviour
         {
             CheckResults();
             CashOut();
-            betOutcome.enabled = true;
-            multiplierText.enabled = true;
-            tMPButton.interactable = true;
+            if (!firstloop)
+            {
+                betOutcome.enabled = true;
+                multiplierText.enabled = true;
+                tMPButton.interactable = true;
+            }
             multiplierText.text = "Your multiplier is: " + multiplierVal;
         }
     }
@@ -59,16 +63,19 @@ public class GameControl : MonoBehaviour
             if (slotRows[0].rowStopped && slotRows[1].rowStopped && slotRows[2].rowStopped && (currencyValue >= bet)){
                 multiplierText.fontSize = 25;
                 SpinButtonPressed();
+                firstloop = false;
                 tMPButton.interactable = false;
             }
         }
         else if (stringValued){
             multiplierText.fontSize = 20;
+            multiplierText.enabled = true;
             multiplierText.text = "Please enter a valid number!";
             stringValued = false;
         }
         else{
             multiplierText.fontSize = 20;
+            multiplierText.enabled = true;
             multiplierText.text = "You don't have enough money! setting max bet.";
         }
     }
@@ -157,5 +164,10 @@ public class GameControl : MonoBehaviour
         multiplierVal = 0f; // Or any default value you want
         betOutcome.text = "You lost! " + bet + "$";
         resultsChecked = true;
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
     }
 }

@@ -69,29 +69,29 @@ public class SlotRow : MonoBehaviour
             yield return new WaitForSeconds(timeInterval); ;
         }
 
-        // Define a dictionary to map y position ranges to stoppedSlot values
-        Dictionary<(float, float), string> slotMapping = new Dictionary<(float, float), string>(){
-            { (-Mathf.Infinity, -6.5f), "YellowDuck" },
-            { (-6.5f, -4f), "GreyDuck" },
-            { (-4f, -1.5f), "GreenDuck" },
-            { (-1.5f, 1f), "YoungYellowDuck" },
-            { (1f, 3.6f), "YoungGreyDuck" },
-            { (3.6f, 6.2f), "YoungGreenDuck" },
-            { (6.2f, 8.6f), "Goose" },
-            { (8.6f, 9f), "Goose" }
-        };
-
-        foreach (var kvp in slotMapping)
+        if (transform.position.y == -6.5f || transform.position.y == 11.35f){
+            stoppedSlot = "YellowDuck";
+        }
+        else if (transform.position.y >= -4f && transform.position.y < -2f)
         {
-            float minY = kvp.Key.Item1;
-            float maxY = kvp.Key.Item2;
-            string slotType = kvp.Value;
-
-            if (transform.position.y >= minY && transform.position.y < maxY)
-            {
-                stoppedSlot = slotType;
-                break;
-            }
+            stoppedSlot = "GreyDuck";
+        }
+        else if (transform.position.y >= -1.5f && transform.position.y < -1.3f)
+        {
+            stoppedSlot = "GreenDuck";
+        }
+        else if (transform.position.y >= 1f && transform.position.y < 2)
+        {
+            stoppedSlot = "YoungYellowDuck";
+        }
+        else if (transform.position.y >= 3.6f && transform.position.y < 5){
+            stoppedSlot = "YoungGreyDuck";
+        }
+        else if (transform.position.y >= 6.20f && transform.position.y < 7f){
+            stoppedSlot = "YoungGreenDuck";
+        }
+        else if (transform.position.y >= 8.6f && transform.position.y < 9f){
+            stoppedSlot = "Goose";
         }
 
         rowStopped = true;
