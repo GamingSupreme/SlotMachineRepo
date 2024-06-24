@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * This class was used when i was testing all the values for the slots and didnt wanna randomly roll through the slots every time
+ * Please disregard this class
+ * */
 public class TestButton : MonoBehaviour
 {
     public Transform Row;
